@@ -56,6 +56,7 @@ export const writePost = asyncHandler(async (req, res, next) => {
       if (!isTag) await new Tag({ name: item }).save();
     })
   );
+
   res.send(post);
 });
 
@@ -187,6 +188,17 @@ export const comment = asyncHandler(async (req, res, next) => {
   const post = await Post.updateOne(
     { _id: postId },
     { $push: { comments: { userId, comment } } }
+  );
+  res.send({ success: post.modifiedCount == 1 });
+});
+
+export const deleteComment = asyncHandler(async (req, res, next) => {
+  const { postId } = req.params;
+  const { userId } = req;
+  const { comment } = req.body;
+  const post = await Post.updateOne(
+    { _id: postId },
+    { $pull: { comments: { userId, comment } } }
   );
   res.send({ success: post.modifiedCount == 1 });
 });
