@@ -54,7 +54,7 @@ export default function SignInBox({ message, typeOfLogin }: SignInBoxType) {
     >
       <p
         style={{
-          fontFamily: "Roboto Slab",
+          fontFamily: "Inter",
           fontSize: "28px",
           marginBottom: "30px",
         }}

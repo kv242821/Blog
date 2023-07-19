@@ -12,6 +12,10 @@ body {
   --borderColor: rgba(242, 242, 242, 1)
 }
 
+button {
+  font-family: 'Inter', sans-serif;
+}
+
 .container {
   width: 52%;
   margin: auto;
@@ -23,7 +27,7 @@ body {
   white-space: break-spaces;
   font-size: 17.75px;
   line-height: 36px;
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Inter', serif;
   color: rgb(80 80 80) !important;
 }
 
@@ -41,7 +45,7 @@ h2,
 h3,
 h4 {
   margin: 15px 0;
-  font-family: 'Poppins';
+  font-family: 'Inter';
   color: black;
   font-weight: bold;
 }
@@ -50,7 +54,7 @@ h4 {
 h6 {
   margin: 8px 0;
   color: black;
-  font-family: 'Poppins';
+  font-family: 'Inter';
 }
 
 .markdown li {

@@ -19,5 +19,5 @@ const defaultStyle = {
   padding: "8px 10px",
   borderRadius: "17px",
   fontSize: "12.5px",
-  fontFamily: "Questrial",
+  fontFamily: "Inter",
 };

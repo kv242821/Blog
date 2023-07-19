@@ -71,7 +71,7 @@ export default function Topic({ name }: TopicProps) {
       >
         <p
           style={{
-            fontFamily: "Poppins",
+            fontFamily: "Inter",
             fontSize: "13.75px",
             textDecoration: "none",
             color: "inherit",

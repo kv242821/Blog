@@ -13,7 +13,7 @@ export default function WhoToFollow() {
       <h5
         style={{
           color: "#434343",
-          fontFamily: "Questrial",
+          fontFamily: "Inter",
           fontSize: "14px",
           margin: "12px 8px",
           letterSpacing: "0.55px",

@@ -64,7 +64,7 @@ export default function SuggestionBar({ activeTab }: { activeTab: string }) {
                 textDecoration: "none",
                 color: activeTab === option.title ? "black" : "gray",
                 fontSize: "14px",
-                fontFamily: "Questrial",
+                fontFamily: "Inter",
                 whiteSpace: "nowrap",
                 borderBottom:
                   activeTab === option.title ? "2px solid black" : "none",
@@ -86,7 +86,7 @@ export default function SuggestionBar({ activeTab }: { activeTab: string }) {
                 textDecoration: "none",
                 color: activeTab === item ? "black" : "gray",
                 fontSize: "14px",
-                fontFamily: "Questrial",
+                fontFamily: "Inter",
                 whiteSpace: "nowrap",
                 borderBottom: activeTab === item ? "2px solid black" : "none",
                 height: activeTab === item ? "94%" : "98%",

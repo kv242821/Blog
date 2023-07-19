@@ -138,7 +138,7 @@ function ToastComponent({ message, t }: { message: string; t: Toast }) {
       <span
         style={{
           color: "white",
-          fontFamily: "Roboto Slab",
+          fontFamily: "Inter",
           fontSize: "14px",
           marginRight: "30px",
         }}

@@ -30,7 +30,7 @@ export default function Hero() {
             className="hero_title"
             style={{
               fontSize: "100px",
-              fontFamily: "DM Serif Display",
+              fontFamily: "Inter",
               zIndex: 99,
             }}
           >

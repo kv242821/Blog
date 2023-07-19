@@ -41,7 +41,7 @@ export default function StoryCard({
           className="font"
           to={`/user/${userId}`}
           style={{
-            fontFamily: "Roboto Slab",
+            fontFamily: "Inter",
             fontSize: "12.75px",
             letterSpacing: "0.25px",
             color: "rgb(29 29 29)",
@@ -63,7 +63,7 @@ export default function StoryCard({
         <Link
           to={`/blog/${postId}`}
           style={{
-            fontFamily: "Poppins",
+            fontFamily: "Inter",
             fontWeight: "bolder",
             fontSize: "14px",
             marginTop: "5px",

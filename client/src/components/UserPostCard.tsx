@@ -73,7 +73,7 @@ export default function UserPostCard({
         to={`/user/${userId}`}
         style={{
           marginLeft: "8px",
-          fontFamily: "Roboto Slab",
+          fontFamily: "Inter",
           fontSize: "15px",
           color: "inherit",
           textDecoration: "none",
@@ -87,7 +87,7 @@ export default function UserPostCard({
           marginLeft: "8px",
           marginTop: "-4px",
           fontSize: "14px",
-          fontFamily: "Roboto",
+          fontFamily: "Inter",
           color: "#4b4a4a",
           textDecoration: "none",
         }}

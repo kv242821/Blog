@@ -23,7 +23,7 @@ export default function Topics({
       <h5
         style={{
           color: "#434343",
-          fontFamily: "Questrial",
+          fontFamily: "Inter",
           fontSize: "14px",
           margin: "12px 8px",
           letterSpacing: "0.55px",
@@ -43,7 +43,7 @@ export default function Topics({
           <Chip
             style={{
               backgroundColor: "rgb(242, 242, 242)",
-              fontFamily: "Questrial",
+              fontFamily: "Inter",
               padding: "10px 18px",
               margin: "4.5px 3px",
               fontSize: "13.8px",

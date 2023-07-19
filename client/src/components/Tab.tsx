@@ -31,7 +31,7 @@ export default function Tab({ options, activeTab }: TabProps) {
               textDecoration: "none",
               color: activeTab === option.title ? "black" : "gray",
               fontSize: "14px",
-              fontFamily: "Questrial",
+              fontFamily: "Inter",
               whiteSpace: "nowrap",
               borderBottom:
                 activeTab === option.title ? "2px solid black" : "none",
