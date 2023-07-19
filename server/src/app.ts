@@ -14,9 +14,7 @@ import morgan from "morgan"
 
 const server = createServer(app);
 
-const isProd = !env.DEV;
-
-if (isProd) {
+if (env.DEV) {
   app.use(morgan('dev'));
 }
 

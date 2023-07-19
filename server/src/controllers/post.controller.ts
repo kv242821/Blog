@@ -49,6 +49,7 @@ export const writePost = asyncHandler(async (req, res, next) => {
     image: imgUrl,
     summary,
   });
+  
   const post = await postRef.save();
   Promise.all(
     post.tags.map(async (item) => {
