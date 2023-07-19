@@ -1,6 +1,7 @@
 import express from "express";
 import {
   comment,
+  deleteComment,
   deletePost,
   editPost,
   explorePost,
@@ -21,6 +22,7 @@ import {
   writePost,
 } from "../controllers/post.controller";
 import isAuthenticated from "../middlewares/auth";
+
 const router = express.Router();
 
 router.route("/write").post(isAuthenticated, writePost);
@@ -47,7 +49,9 @@ router.route("/users/:topic").get(isAuthenticated, getPostOfTopic);
 
 router.route("/vote/:postId").patch(isAuthenticated, vote);
 
-router.route("/comment/:postId").put(isAuthenticated, comment);
+router.route("/comment/:postId")
+  .put(isAuthenticated, comment)
+  .delete(isAuthenticated, deleteComment);
 
 router.route("/topic/:topic").get(getPostOfTopic);
 

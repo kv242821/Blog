@@ -1,6 +1,6 @@
 import { Schema, InferSchemaType, model } from "mongoose";
 
-const userSchema = new Schema(
+const postSchema = new Schema(
   {
     title: {
       type: String,
@@ -29,5 +29,5 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-type userSchemaInferType = InferSchemaType<typeof userSchema>;
-export default model<userSchemaInferType>("posts", userSchema);
+type userSchemaInferType = InferSchemaType<typeof postSchema>;
+export default model<userSchemaInferType>("posts", postSchema);
