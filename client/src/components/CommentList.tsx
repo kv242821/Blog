@@ -61,9 +61,10 @@ export const CommentList = ({ postId, ownerId }: Props) => {
     const { refetch: deleteComment } = useQuery({
       queryFn: () => {
         const params = new URLSearchParams();
-        params.append("comment", comment.comment);
         params.append("commentId", comment._id);
-        return httpRequest.delete(`${url}/post/comment/${postId}`);
+        return httpRequest.delete(`${url}/post/comment/${postId}`, {
+          data: params,
+        });
       },
       queryKey: ["delete", comment._id],
       enabled: false,
