@@ -21,6 +21,8 @@ import MoreFrom from "../components/MoreFrom";
 import { GetStarted } from "../components/AvatarMenu";
 import { useAppContext } from "../App";
 import PostMenu from "../components/PostMenu";
+import { Drawer } from "@mui/material";
+import { CommentList } from "../components/CommentList";
 
 export default function Post() {
   const { webShare } = useShare();
@@ -61,6 +63,7 @@ export default function Post() {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const [openCommentDrawer, setOpenCommentDrawer] = useState(false);
 
   const { refetch: ignoreAuthorCall } = useQuery({
     queryFn: () =>
@@ -109,6 +112,14 @@ export default function Post() {
       className="container"
       style={{ display: "flex", flexDirection: "row" }}
     >
+      <Drawer
+        open={openCommentDrawer}
+        anchor="right"
+        onClose={() => setOpenCommentDrawer(false)}
+      >
+        <CommentList postId={id || ""} />
+      </Drawer>
+
       <div
         className="postsList"
         style={{
@@ -235,7 +246,12 @@ export default function Post() {
                     {votes || ""}
                   </p>
                 </div>
-                <span style={iconColor}>{commentIcon}</span>
+                <span
+                  style={iconColor}
+                  onClick={() => setOpenCommentDrawer(true)}
+                >
+                  {commentIcon}
+                </span>
               </div>
               <div
                 className="right_tile"

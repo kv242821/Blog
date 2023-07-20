@@ -1,19 +1,42 @@
-import { forwardRef, useEffect, useState } from "react";
-import { useAppContext } from "../App";
-import TextareaAutosize from "react-textarea-autosize";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import Dialog from "@mui/material/Dialog";
-import { TransitionProps } from "@mui/material/transitions";
 import Slide from "@mui/material/Slide";
-import { cancelIcon } from "../assets/icons";
-import WriteNavbar from "../components/WriteNavbar";
-import { useAuth } from "../contexts/Auth";
+import { TransitionProps } from "@mui/material/transitions";
 import { useQuery } from "@tanstack/react-query";
-import { httpRequest } from "../interceptor/axiosInterceptor";
-import { url } from "../baseUrl";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { forwardRef, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import TextareaAutosize from "react-textarea-autosize";
+import { v4 as uuidv4 } from "uuid";
+import { useAppContext } from "../App";
+import { cancelIcon } from "../assets/icons";
+import { url } from "../baseUrl";
+import WriteNavbar from "../components/WriteNavbar";
+import { storage } from "../config/firebase";
+import { useAuth } from "../contexts/Auth";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { httpRequest } from "../interceptor/axiosInterceptor";
 
 const INITAIL_POST_DATA = { title: "", markdown: "", tags: "" };
+
+class MyUploadAdapter {
+  constructor(loader: any) {
+    this.loader = loader;
+  }
+
+  async upload() {
+    const file = await this.loader.file;
+    const imageRef = ref(storage, `images/${file.name}_${uuidv4()}`);
+    try {
+      const snapshot = await uploadBytes(imageRef, file);
+      const downloadUrl = await getDownloadURL(snapshot.ref);
+      return { default: downloadUrl };
+    } catch (error) {
+      throw error;
+    }
+  }
+}
 
 export default function Write() {
   const { hideNavbar } = useAppContext();
@@ -114,6 +137,14 @@ export default function Write() {
     }
   };
 
+  function uploadPlugin(editor: any) {
+    editor.plugins.get("FileRepository").createUploadAdapter = (
+      loader: any
+    ) => {
+      return new MyUploadAdapter(loader);
+    };
+  }
+
   return (
     <>
       <WriteNavbar
@@ -169,6 +200,27 @@ export default function Write() {
             resize: "none",
           }}
         />
+
+        <CKEditor
+          config={{
+            extraPlugins: [uploadPlugin],
+          }}
+          editor={ClassicEditor}
+          // onChange={(e) => {
+          //   setLocalDraft((prev) => ({ ...prev, markdown: e.target.value }));
+          //   setPost((prev) => {
+          //     return { ...prev, markdown: e.target.value };
+          //   });
+          // }}
+          data={post.markdown}
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            setPost((prev) => {
+              return { ...prev, markdown: data };
+            });
+          }}
+        />
+
         <Dialog
           fullScreen
           open={open}
