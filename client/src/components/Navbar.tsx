@@ -18,6 +18,7 @@ export default function Navbar({
 
   return (
     <nav
+      className="container_70"
       style={{
         height: "56px",
         borderBottom: "solid 1px rgba(242, 242, 242, 1)",
@@ -30,7 +31,6 @@ export default function Navbar({
       <div
         className="left"
         style={{
-          marginLeft: "23px",
           display: "flex",
           flexDirection: "row",
           alignItems: "center",

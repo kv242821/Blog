@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useAppContext } from "../App";
 import Explore from "../components/Explore";
-import Hero from "../components/Hero";
-import Navbar from "../components/YellowNavbar";
+import UnAuthNavbar from "../components/UnAuthNavbar";
 
 export default function UnAuthHome() {
   const { hideNavbar } = useAppContext();
@@ -13,8 +12,7 @@ export default function UnAuthHome() {
   }, []);
   return (
     <div>
-      <Navbar />
-      <Hero />
+      <UnAuthNavbar />
       <Explore />
     </div>
   );

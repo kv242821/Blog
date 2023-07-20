@@ -14,77 +14,14 @@ import {
 import { useAuth } from "../contexts/Auth";
 
 export default function AvatarMenu() {
-  const { isAuthenticated, user, logout } = useAuth();
-  return isAuthenticated ? (
+  const { user, logout } = useAuth();
+  return (
     <AuthMenu
       avatar={user!.avatar}
       email={user!.email}
       userId={user!._id}
       logout={logout}
     />
-  ) : (
-    <UnAuthMenu />
-  );
-}
-
-function UnAuthMenu() {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (
-    event: MouseEvent<HTMLImageElement | HTMLSpanElement>
-  ) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  return (
-    <div
-      className="avatar"
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        gap: "3px",
-      }}
-    >
-      <img
-        onClick={handleClick}
-        style={{
-          width: "32px",
-          borderRadius: "50%",
-          border: "1px solid #d9d9d9",
-          cursor: "pointer",
-        }}
-        src={DEFAULT_IMG}
-        alt=""
-      />
-      <span
-        onClick={handleClick}
-        style={{ color: "rgba(117, 117, 117, 1)", cursor: "pointer" }}
-      >
-        {carrotIcon}
-      </span>
-      <Menu
-        PaperProps={{
-          style: {
-            width: 250,
-            padding: "10px 0",
-            borderRadius: "4px",
-            marginTop: "10px",
-          },
-        }}
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
-      >
-        <GetStarted />
-      </Menu>
-    </div>
   );
 }
 
@@ -266,67 +203,6 @@ function AuthMenu({
           </span>
         </MenuItem>
       </Menu>
-    </div>
-  );
-}
-
-export function GetStarted({
-  style,
-  topStyle,
-}: {
-  style?: object;
-  topStyle?: object;
-}) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "10px",
-        paddingBottom: "8px",
-        paddingTop: "7px",
-        ...style,
-      }}
-    >
-      <p style={{ marginBottom: "12px", ...topStyle }}>Get started on Medium</p>
-      <Link
-        to="/signin/new"
-        style={{
-          backgroundColor: "#1a8917",
-          color: "white",
-          border: "none",
-          outline: "none",
-          borderRadius: "17px",
-          padding: "8px 12px",
-          fontSize: "14px",
-          textDecoration: "none",
-          width: "170px",
-          textAlign: "center",
-          ...style,
-        }}
-      >
-        Sign up
-      </Link>
-      <Link
-        to="/signin/in"
-        style={{
-          border: "1px solid gray",
-          outline: "transparent",
-          background: "transparent",
-          borderRadius: "17px",
-          padding: "7px 12px",
-          color: "gray",
-          marginRight: "-5px",
-          fontSize: "14px",
-          textDecoration: "none",
-          width: "170px",
-          textAlign: "center",
-          ...style,
-        }}
-      >
-        Sign In
-      </Link>
     </div>
   );
 }

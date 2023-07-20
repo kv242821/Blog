@@ -1,17 +1,12 @@
 import { Link } from "react-router-dom";
-import { DEFAULT_IMG } from "../App";
-import {
-  carrotIcon,
-  mediumLogo,
-  NotificationIcon,
-  writeBlogIcon,
-} from "../assets/icons";
+import { mediumLogo, writeBlogIcon } from "../assets/icons";
 import AvatarMenu from "./AvatarMenu";
 import Search from "./Search";
 
 export default function UnAuthNavbar() {
   return (
     <nav
+      className="container_70"
       style={{
         height: "56px",
         borderBottom: "solid 1px rgba(242, 242, 242, 1)",
@@ -24,7 +19,6 @@ export default function UnAuthNavbar() {
       <div
         className="left"
         style={{
-          marginLeft: "23px",
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
@@ -62,48 +56,10 @@ export default function UnAuthNavbar() {
           </span>
           <p style={{ fontSize: "14.5px", marginTop: "-4px" }}>Write</p>
         </Link>
-        <div
-          className="btns"
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            gap: "10px",
-          }}
-        >
-          <Link
-            to="/signin/new"
-            style={{
-              backgroundColor: "#1a8917",
-              color: "white",
-              border: "none",
-              outline: "none",
-              borderRadius: "17px",
-              padding: "8px 12px",
-              fontSize: "14px",
-              textDecoration: "none",
-            }}
-          >
-            Sign up
-          </Link>
-          <Link
-            to="/signin/in"
-            style={{
-              border: "none",
-              outline: "transparent",
-              background: "transparent",
-              borderRadius: "17px",
-              padding: "8px 12px",
-              color: "gray",
-              marginRight: "-5px",
-              fontSize: "14px",
-              textDecoration: "none",
-            }}
-          >
-            Sign In
-          </Link>
-        </div>
-        <AvatarMenu />
+
+        <Link to="/signin/in" className="button-custom">
+          Sign In
+        </Link>
       </div>
     </nav>
   );

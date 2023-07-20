@@ -103,7 +103,6 @@ export default function PostAuthor({
                 timeStyle="round"
               />
             </p>
-            <p style={{ fontSize: "13px", color: "gray" }}>3 min read</p>
           </div>
         </div>
       </div>

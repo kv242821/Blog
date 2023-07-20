@@ -192,9 +192,9 @@ export const comment = asyncHandler(async (req, res, next) => {
 });
 
 export const deleteComment = asyncHandler(async (req, res, next) => {
-  const { postId, commentId } = req.params;
+  const { postId } = req.params;
   const { userId } = req;
-  const { comment } = req.body;
+  const { comment, commentId } = req.body;
   const post = await Post.updateOne(
     { _id: postId },
     { $pull: { comments: { _id: commentId, userId, comment } } }
