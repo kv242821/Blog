@@ -8,7 +8,8 @@ const MESSAGE_MAP = new Map([
   [
     "write",
     {
-      message: "Create an account to start writing your own blog.",
+      message:
+        "Sign in with your Google account to start writing your own blog.",
       typeOfLogin: "Sign in",
     },
   ],

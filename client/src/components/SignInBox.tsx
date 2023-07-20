@@ -41,7 +41,7 @@ export default function SignInBox({ message, typeOfLogin }: SignInBoxType) {
         flexDirection: "column",
         alignItems: "center",
         gap: "16px",
-        padding: "8vh 0",
+        padding: "8vh 4vw",
         boxShadow:
           "rgb(190, 190, 190) 2px 2px 12px, rgb(255, 255, 255) -20px -20px 60px",
       }}
@@ -51,6 +51,8 @@ export default function SignInBox({ message, typeOfLogin }: SignInBoxType) {
           fontFamily: "Inter",
           fontSize: "28px",
           marginBottom: "30px",
+          wordBreak: "break-word",
+          textAlign: "center",
         }}
       >
         {message}
