@@ -15,8 +15,8 @@ import WhoToFollow from "../components/WhoToFollow";
 const SEARCHBAR_OPTIONS = [
   {
     id: 1,
-    title: "stories",
-    url: "/search/stories/${q}",
+    title: "posts",
+    url: "/search/posts/${q}",
   },
   {
     id: 2,
@@ -50,7 +50,7 @@ export default function SearchResults() {
     queryKey: ["search", "get", tab, query],
     enabled: false,
     onSuccess(response) {
-      if (tab === "stories") setPosts(response.data);
+      if (tab === "posts") setPosts(response.data);
       else if (tab === "people") setUsers(response.data);
       else if (tab === "topics") setTopics(response.data);
     },
@@ -60,7 +60,7 @@ export default function SearchResults() {
     if (!query || !tab) return;
     setApiQuery("");
     const t = setTimeout(() => {
-      if (tab === "stories") setApiQuery("posts");
+      if (tab === "posts") setApiQuery("posts");
       else if (tab === "people") setApiQuery("users");
       else if (tab === "topics") setApiQuery("topics");
       const tabs = SEARCHBAR_OPTIONS.map((tabItem) => {
@@ -135,7 +135,7 @@ export default function SearchResults() {
             </h1>
           </div>
           <Tab options={tabsOptions} activeTab={tab as string} />
-          {tab === "stories" &&
+          {tab === "posts" &&
             posts.map((item: any) => (
               <Post
                 showUserList={true}

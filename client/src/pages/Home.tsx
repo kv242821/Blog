@@ -113,7 +113,7 @@ function HomeContainer({ tag }: { tag: string }) {
           gap: "38px",
         }}
       >
-        {isAuthenticated && <TopPicks text="Top Picks" />}
+        {isAuthenticated && <TopPicks text="Popular posts" />}
         <Topics />
         {isAuthenticated && <WhoToFollow />}
       </div>

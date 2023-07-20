@@ -40,7 +40,7 @@ export default function Search() {
           backgroundColor: "transparent",
         }}
         type="text"
-        placeholder="Search The Blog"
+        placeholder="Search "
       />
     </div>
   );

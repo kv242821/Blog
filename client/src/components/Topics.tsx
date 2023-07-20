@@ -5,7 +5,7 @@ import Chip from "./Chip";
 import { useAuth } from "../contexts/Auth";
 
 export default function Topics({
-  text = "Recommended topics",
+  text = "Hot topics",
   style,
 }: {
   text?: string;
