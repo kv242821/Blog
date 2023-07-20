@@ -41,16 +41,7 @@ export default function WriteNavbar({
           onClick={() => {
             !disabled && onClick();
           }}
-          style={{
-            color: "white",
-            backgroundColor: disabled ? "#cbe4ca" : "#1a8917",
-            border: "none",
-            outline: "none",
-            padding: "6px 12px",
-            borderRadius: "15px",
-            letterSpacing: "0.2px",
-            cursor: "pointer",
-          }}
+          className="button-custom"
         >
           {buttonText}
         </button>
