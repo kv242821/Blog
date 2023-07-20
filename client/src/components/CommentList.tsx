@@ -69,7 +69,6 @@ export const CommentList = ({ postId, ownerId }: Props) => {
       queryKey: ["delete", comment._id],
       enabled: false,
       onSuccess() {
-        console.log("ádasd");
         getAllComments();
       },
     });
@@ -101,7 +100,7 @@ export const CommentList = ({ postId, ownerId }: Props) => {
       <h1
         style={{
           fontWeight: "bolder",
-          fontFamily: "Poppins",
+          fontFamily: "Inter",
           fontSize: "24px",
           marginBottom: "18px",
         }}
@@ -122,21 +121,16 @@ export const CommentList = ({ postId, ownerId }: Props) => {
             border: "none",
             outline: "transparent",
             resize: "none",
+            fontFamily: "Inter",
           }}
         />
       </Stack>
       <Stack direction={"row"} spacing={2}>
         <button
           onClick={handleComment}
+          className="button-custom"
           style={{
-            backgroundColor: "black",
-            outline: "transparent",
-            border: `1px solid  "black`,
-            borderRadius: "17px",
-            padding: "7px 14px",
-            cursor: "pointer",
             marginLeft: "auto",
-            color: "white",
           }}
           disabled={comment.length == 0}
         >

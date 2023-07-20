@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { mediumLogo, moreIcon, NotificationIcon } from "../assets/icons";
+import { theBlogLogo, moreIcon, NotificationIcon } from "../assets/icons";
 import AvatarMenu from "./AvatarMenu";
 
 type WriteNavType = {
@@ -24,7 +24,7 @@ export default function WriteNavbar({
       }}
     >
       <div className="left_write_nav">
-        <Link to="/">{mediumLogo}</Link>
+        <Link to="/">{theBlogLogo}</Link>
       </div>
       <div
         className="right_write_nav"
@@ -35,26 +35,15 @@ export default function WriteNavbar({
           gap: "18px",
         }}
       >
-        {/* cbe4ca */}
         <button
           disabled={disabled}
           onClick={() => {
             !disabled && onClick();
           }}
-          style={{
-            color: "white",
-            backgroundColor: disabled ? "#cbe4ca" : "#1a8917",
-            border: "none",
-            outline: "none",
-            padding: "6px 12px",
-            borderRadius: "15px",
-            letterSpacing: "0.2px",
-            cursor: "pointer",
-          }}
+          className="button-custom"
         >
           {buttonText}
         </button>
-        <span style={{ color: "gray", cursor: "pointer" }}>{moreIcon}</span>
         <Link to="/notifications">
           <span style={{ color: "gray", cursor: "pointer" }}>
             {NotificationIcon}

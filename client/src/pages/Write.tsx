@@ -21,6 +21,7 @@ import { httpRequest } from "../interceptor/axiosInterceptor";
 const INITAIL_POST_DATA = { title: "", markdown: "", tags: "" };
 
 class MyUploadAdapter {
+  loader: any;
   constructor(loader: any) {
     this.loader = loader;
   }
@@ -158,10 +159,8 @@ export default function Write() {
           flexDirection: "column",
           alignItems: "center",
 
-          width: "80%",
           margin: "auto",
           marginTop: "3vh",
-          gap: "22px",
         }}
       >
         <TextareaAutosize
@@ -173,35 +172,37 @@ export default function Write() {
             });
           }}
           value={post.title}
-          placeholder="Title"
+          placeholder="Blog Title"
           style={{
             width: "100%",
             fontSize: "45px",
             border: "none",
             outline: "transparent",
             resize: "none",
+            fontFamily: "Inter",
           }}
         />
-
-        <CKEditor
-          config={{
-            extraPlugins: [uploadPlugin],
-          }}
-          editor={ClassicEditor}
-          // onChange={(e) => {
-          //   setLocalDraft((prev) => ({ ...prev, markdown: e.target.value }));
-          //   setPost((prev) => {
-          //     return { ...prev, markdown: e.target.value };
-          //   });
-          // }}
-          data={post.markdown}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            setPost((prev) => {
-              return { ...prev, markdown: data };
-            });
-          }}
-        />
+        <div style={{ marginTop: 40, width: "100%" }}>
+          <CKEditor
+            config={{
+              extraPlugins: [uploadPlugin],
+            }}
+            editor={ClassicEditor}
+            // onChange={(e) => {
+            //   setLocalDraft((prev) => ({ ...prev, markdown: e.target.value }));
+            //   setPost((prev) => {
+            //     return { ...prev, markdown: e.target.value };
+            //   });
+            // }}
+            data={post.markdown}
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              setPost((prev) => {
+                return { ...prev, markdown: data };
+              });
+            }}
+          />
+        </div>
 
         <Dialog
           fullScreen
@@ -400,17 +401,8 @@ const DialogComponent = ({
               onClick={() => {
                 tags.length > 0 && handlePublish();
               }}
-              style={{
-                marginTop: "18px",
-                color: "white",
-                backgroundColor: tags.length > 0 ? "#1a8917" : "#cbe4ca",
-                border: "none",
-                outline: "transparent",
-                width: "fit-content",
-                padding: "10px 12px",
-                borderRadius: "17px",
-                cursor: "pointer",
-              }}
+              className="button-custom"
+              disabled={tags.length === 0}
             >
               {buttonText}
             </button>

@@ -38,7 +38,7 @@ export default function Post() {
     queryFn: () => httpRequest.get(`${url}/post/${id}`),
     queryKey: ["blog", id],
     onSuccess: (data) => {
-      document.title = data.data.post.title;
+      document.title = data.data.post.title + " - The Blog";
       setVotes(data.data.post.votes.length ?? 0);
       setTurnBlack(data.data.post.votes.includes(user?._id));
     },
@@ -284,6 +284,28 @@ export default function Post() {
             />
           )}
         </div>
+      </div>
+      <div
+        className="rightbar"
+        style={{
+          width: "31%",
+          paddingTop: "3vh",
+          display: "flex",
+          flexDirection: "column",
+          gap: "38px",
+        }}
+      >
+        {data?.data.user && (
+          <UserPostCard
+            followers={data.data.user.followers}
+            userId={data.data.user._id}
+            username={data.data.user.name}
+            bio={data.data.user.bio}
+            image={data.data.user.avatar}
+          />
+        )}
+
+        <TopPicks text="More from The Blog" showImg={true} />
       </div>
     </div>
   );
