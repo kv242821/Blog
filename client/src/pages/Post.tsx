@@ -43,6 +43,7 @@ export default function Post() {
       setTurnBlack(data.data.post.votes.includes(user?._id));
     },
   });
+  console.log(data?.data);
 
   const { refetch: clap } = useQuery({
     queryFn: () => httpRequest.patch(`${url}/post/vote/${id}`),
@@ -116,7 +117,7 @@ export default function Post() {
         anchor="right"
         onClose={() => setOpenCommentDrawer(false)}
       >
-        <CommentList postId={id || ""} />
+        <CommentList postId={id || ""} ownerId={data?.data.user._id} />
       </Drawer>
 
       <div
@@ -242,15 +243,33 @@ export default function Post() {
                       fontFamily: "Inter",
                     }}
                   >
-                    {votes || ""}
+                    {votes || 0}
                   </p>
                 </div>
-                <span
-                  style={iconColor}
-                  onClick={() => setOpenCommentDrawer(true)}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "8px",
+                    alignItems: "center",
+                  }}
                 >
-                  {commentIcon}
-                </span>
+                  <span
+                    style={iconColor}
+                    onClick={() => setOpenCommentDrawer(true)}
+                  >
+                    {commentIcon}
+                  </span>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "gray",
+                      fontFamily: "Inter",
+                    }}
+                  >
+                    {data?.data.post.comments.length || 0}
+                  </p>
+                </div>
               </div>
               <div
                 className="right_tile"
@@ -327,7 +346,7 @@ export default function Post() {
   );
 }
 
-const iconColor = {
+export const iconColor = {
   color: "rgba(117, 117, 117, 1)",
   cursor: "pointer",
 };

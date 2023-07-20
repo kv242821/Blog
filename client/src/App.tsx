@@ -24,6 +24,7 @@ import { io } from "socket.io-client";
 import { url } from "./baseUrl";
 import SearchResults from "./pages/SearchResults";
 import Suggestions from "./pages/Suggestions";
+import { Page404 } from "./pages/Page404";
 
 export const DEFAULT_IMG =
   "https://firebasestorage.googleapis.com/v0/b/upload-pics-e599e.appspot.com/o/images%2F1_dmbNkD5D-u45r44go_cf0g.png?alt=media&token=3ef51503-f601-448b-a55b-0682607ddc8a";
@@ -123,6 +124,7 @@ export default function App() {
             }
           />
           <Route path="/oauth/redirect" element={<AuthRedirect />} />
+          <Route path="*" element={<Page404 />} />
         </Routes>
       </div>
     </Context.Provider>
