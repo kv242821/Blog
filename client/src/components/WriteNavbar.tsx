@@ -35,7 +35,6 @@ export default function WriteNavbar({
           gap: "18px",
         }}
       >
-        {/* cbe4ca */}
         <button
           disabled={disabled}
           onClick={() => {
@@ -45,7 +44,6 @@ export default function WriteNavbar({
         >
           {buttonText}
         </button>
-        <span style={{ color: "gray", cursor: "pointer" }}>{moreIcon}</span>
         <Link to="/notifications">
           <span style={{ color: "gray", cursor: "pointer" }}>
             {NotificationIcon}

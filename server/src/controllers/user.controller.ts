@@ -2,22 +2,6 @@ import asyncHandler from "express-async-handler";
 import User from "../models/user";
 import ServerError from "../utils/ServerError";
 
-export const editUser = asyncHandler(async (req, res, next) => {
-  const { userId } = req;
-  const user = await User.findOne({ _id: userId });
-  if (!user) throw new ServerError(400, "User doesn't exist");
-  const updatedRef = await User.updateOne({ _id: userId }, req.body);
-  res.send({ success: updatedRef.modifiedCount == 1 });
-});
-
-export const deleteUser = asyncHandler(async (req, res, next) => {
-  const { userId } = req;
-  const user = await User.findOne({ _id: userId });
-  if (!user) throw new ServerError(400, "User doesn't exist");
-  const deletedRef = await User.deleteOne({ _id: userId });
-  res.send({ success: deletedRef.deletedCount == 1 });
-});
-
 export const followUser = asyncHandler(async (req, res, next) => {
   const { userId: userTo } = req.params;
   const { userId } = req;

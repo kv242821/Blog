@@ -14,12 +14,13 @@ import morgan from "morgan"
 import xss from "xss";
 import mongosanitize from "express-mongo-sanitize"
 import helmet from "helmet";
+import logger from "./middlewares/logger";
 
 const server = createServer(app);
 
 if (env.DEV) {
   app.use(morgan('dev'));
-}
+} else app.use(logger)
 
 app.use(cors({
   origin: "*",

@@ -1,8 +1,6 @@
 import express from "express";
 import {
   addUserinterests,
-  deleteUser,
-  editUser,
   followUser,
   getAllFollowers,
   getAllFollowings,
@@ -17,11 +15,6 @@ import {
 
 import isAuthenticated from "../middlewares/auth";
 const router = express.Router();
-
-router
-  .route("/myprofile")
-  .put(isAuthenticated, editUser)
-  .delete(isAuthenticated, deleteUser);
 
 router.route("/suggest").get(isAuthenticated, suggestUsers);
 
