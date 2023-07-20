@@ -13,12 +13,6 @@ const SIGNIN_OPTIONS = [
     handler: "Google",
     image: googleIcon,
   },
-  {
-    id: 2,
-    title: "with email",
-    handler: "mail",
-    image: emailIcon,
-  },
 ];
 
 export default function SignInBox({ message, typeOfLogin }: SignInBoxType) {
@@ -38,7 +32,7 @@ export default function SignInBox({ message, typeOfLogin }: SignInBoxType) {
     const qs = new URLSearchParams(options);
     window.location.assign(`${rootUrl}?${qs.toString()}`);
   }
-  function handleEmailLogin() {}
+
   return (
     <div
       style={{
@@ -66,44 +60,11 @@ export default function SignInBox({ message, typeOfLogin }: SignInBoxType) {
           <ButtonLoginWith
             image={item.image}
             key={item.id}
-            onClick={
-              item.handler == "Google" ? handleGoogleAuth : handleEmailLogin
-            }
+            onClick={handleGoogleAuth}
             text={typeOfLogin + " " + item.title}
           />
         );
       })}
-      {typeOfLogin === "Sign in" ? (
-        <p style={{ marginTop: "22px", color: "#5c5c5c" }}>
-          No account?{" "}
-          <Link
-            style={{
-              color: "#1a8917",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "14px",
-            }}
-            to="/signin/new"
-          >
-            Create one
-          </Link>
-        </p>
-      ) : (
-        <p style={{ marginTop: "22px", color: "#5c5c5c" }}>
-          Already have an account?{" "}
-          <Link
-            style={{
-              color: "#1a8917",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "14px",
-            }}
-            to="/signin/in"
-          >
-            Sign in
-          </Link>
-        </p>
-      )}
 
       <p
         style={{
@@ -115,8 +76,8 @@ export default function SignInBox({ message, typeOfLogin }: SignInBoxType) {
           marginTop: "22px",
         }}
       >
-        Click “{typeOfLogin}” to agree to Medium’s Terms of Service and
-        acknowledge that Medium’s Privacy Policy applies to you.
+        Click “{typeOfLogin}” to agree to The Blog’s Terms of Service and
+        acknowledge that The Blog’s Privacy Policy applies to you.
       </p>
     </div>
   );

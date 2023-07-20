@@ -4,11 +4,13 @@ import SignInBox from "../components/SignInBox";
 import { useEffect } from "react";
 
 const MESSAGE_MAP = new Map([
-  ["in", { message: "Welcome again", typeOfLogin: "Sign in" }],
-  ["new", { message: "Join Medium", typeOfLogin: "Sign up" }],
+  ["in", { message: "Welcome to The Blog", typeOfLogin: "Sign in" }],
   [
     "write",
-    { message: "Create an account to start writing.", typeOfLogin: "Sign in" },
+    {
+      message: "Create an account to start writing your own blog.",
+      typeOfLogin: "Sign in",
+    },
   ],
 ]);
 

@@ -234,7 +234,6 @@ export default function Post({
               }}
             >
               {tag && <Chip text={tag} />}
-              <p style={{ color: "gray", fontSize: "13.25px" }}>4 min read</p>
             </div>
             <div
               className="right_actions"

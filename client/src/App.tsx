@@ -93,7 +93,10 @@ export default function App() {
           ))}
         <Routes>
           <Route path="/tag?/:tag?" element={<Home />} />
-          <Route path="/signin/:tab" element={<SignIn />} />
+          <Route
+            path="/signin/:tab"
+            element={!isAuthenticated ? <SignIn /> : <Navigate to="/" />}
+          />
           <Route path="/suggestions" element={<Suggestions />} />
           <Route path="/search/:tab/:query" element={<SearchResults />} />
           <Route path="/blog/:id" element={<Post />} />
@@ -109,7 +112,7 @@ export default function App() {
           <Route
             path="/write/:postId?"
             element={
-              <Authentication fallback={<Navigate to="/signin/new" />}>
+              <Authentication fallback={<Navigate to="/signin/write" />}>
                 <div
                   className="write_page"
                   style={{ width: "50%", margin: "auto", height: "100%" }}
