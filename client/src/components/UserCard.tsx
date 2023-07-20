@@ -74,7 +74,7 @@ export default function UserCard({
         <p
           style={{
             fontWeight: "bold",
-            fontFamily: "Poppins",
+            fontFamily: "Inter",
             fontSize: "13.75px",
             textDecoration: "none",
             color: "inherit",
@@ -85,7 +85,7 @@ export default function UserCard({
         <p
           style={{
             fontSize: "12.75px",
-            fontFamily: "Questrial",
+            fontFamily: "Inter",
             marginTop: "4px",
             lineHeight: "18px",
             color: "#606060",

@@ -1,7 +1,6 @@
 import express from "express";
 const app = express();
 import env from "./utils/envalid";
-import logger from "./middlewares/logger";
 import postRouter from "./routers/post";
 import authRouter from "./routers/auth";
 import userRouter from "./routers/user";
@@ -11,17 +10,27 @@ import { errorHandler } from "./middlewares/errorHandler";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import User from "./models/user";
+import morgan from "morgan"
+import xss from "xss";
+import mongosanitize from "express-mongo-sanitize"
+import helmet from "helmet";
+
 const server = createServer(app);
 
-const isProd = !env.DEV;
-
-if (isProd) {
-  app.use(logger);
+if (env.DEV) {
+  app.use(morgan('dev'));
 }
 
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "PATCH", "POST", "DELETE", "PUT"],
+  credentials: true, //
+  //   Access-Control-Allow-Credentials is a header that, when set to true , tells browsers to expose the response to the frontend JavaScript code. The credentials consist of cookies, authorization headers, and TLS client certificates.
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(helmet());
+app.use(mongosanitize());
 
 declare global {
   namespace Express {
@@ -40,7 +49,7 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log("a user connected with id : ", socket.id);
+  console.log(`Socket ID: ${socket.id} connected`);
   socket.on("start", ({ userId }) => {
     ONLINE_USER_TO_SOCKET_ID_MAP.set(userId, socket.id);
   });

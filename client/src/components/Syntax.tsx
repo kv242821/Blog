@@ -11,7 +11,7 @@ export default function Syntax({ children }: SyntaxProps) {
         margin: "20px 0",
         fontSize: "13.55px",
         lineHeight: "27px",
-        fontFamily: "Roboto Slab",
+        fontFamily: "Inter",
       }}
     >
       <SyntaxHighlighter language="javascript" style={oneLight}>

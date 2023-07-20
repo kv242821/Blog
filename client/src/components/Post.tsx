@@ -133,7 +133,7 @@ export default function Post({
             to={`/user/${userId}`}
             style={{
               fontSize: "14.45px",
-              fontFamily: "Roboto",
+              fontFamily: "Inter",
               color: "inherit",
               textDecoration: "none",
             }}
@@ -144,7 +144,7 @@ export default function Post({
             style={{
               fontSize: "13.15px",
               color: "gray",
-              fontFamily: "Roboto Slab",
+              fontFamily: "Inter",
             }}
           >
             <ReactTimeAgo
@@ -160,7 +160,7 @@ export default function Post({
           style={{
             fontSize: "13.15px",
             color: "gray",
-            fontFamily: "Roboto Slab",
+            fontFamily: "Inter",
             marginBottom: "10px",
           }}
         >
@@ -188,7 +188,7 @@ export default function Post({
             <Link
               to={`/blog/${postId}`}
               style={{
-                fontFamily: "Poppins",
+                fontFamily: "Inter",
                 color: "inherit",
                 textDecoration: "none",
               }}
@@ -204,7 +204,7 @@ export default function Post({
               marginTop: "10px",
               letterSpacing: "0.2px",
               lineHeight: "25px",
-              fontFamily: "Roboto Slab",
+              fontFamily: "Inter",
               color: "rgb(80 80 80)",
               textDecoration: "none",
             }}

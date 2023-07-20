@@ -161,7 +161,7 @@ export default function Post() {
           <h1
             style={{
               fontWeight: "bolder",
-              fontFamily: "Poppins",
+              fontFamily: "Inter",
               fontSize: "32px",
               marginBottom: "18px",
             }}
@@ -184,7 +184,7 @@ export default function Post() {
                     key={item}
                     style={{
                       backgroundColor: "rgb(242, 242, 242)",
-                      fontFamily: "Questrial",
+                      fontFamily: "Inter",
                       padding: "10px 18px",
                       margin: "4.5px 3px",
                       fontSize: "13.8px",
@@ -240,7 +240,7 @@ export default function Post() {
                     style={{
                       fontSize: "12px",
                       color: "gray",
-                      fontFamily: "Roboto",
+                      fontFamily: "Inter",
                     }}
                   >
                     {votes || ""}
