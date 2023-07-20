@@ -1,15 +1,8 @@
-import {
-  copyurlIcon,
-  facebookIcon,
-  linkedinIcon,
-  moreIcon,
-  savePost,
-  twitterIcon,
-} from "../assets/icons";
+import { Link } from "react-router-dom";
 import ReactTimeAgo from "react-time-ago";
-import { Link, useNavigate } from "react-router-dom";
-import useShare from "../hooks/useShare";
+import { moreIcon, savePost } from "../assets/icons";
 import useClipboard from "../hooks/useClipboard";
+import useShare from "../hooks/useShare";
 import PostMenu from "./PostMenu";
 
 type PostAuthorProps = {
@@ -116,49 +109,6 @@ export default function PostAuthor({
         }}
       >
         <div
-          className="oneSide"
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            gap: "10px",
-          }}
-        >
-          <span
-            onClick={() =>
-              socialShare(
-                `https://twitter.com/intent/tweet?url=${postUrl}&text=${title}`
-              )
-            }
-            style={iconStyle}
-          >
-            {twitterIcon}
-          </span>
-          <span
-            onClick={() =>
-              socialShare(
-                `https://www.facebook.com/sharer/sharer.php?u=${postUrl}`
-              )
-            }
-            style={iconStyle}
-          >
-            {facebookIcon}
-          </span>
-          <span
-            onClick={() =>
-              socialShare(
-                `https://www.linkedin.com/shareArticle?mini=true&url=${postUrl}&title=${title}`
-              )
-            }
-            style={iconStyle}
-          >
-            {linkedinIcon}
-          </span>
-          <span onClick={() => copy(postUrl, "Link copied")} style={iconStyle}>
-            {copyurlIcon}
-          </span>
-        </div>
-        <div
           className="other_side"
           style={{
             display: "flex",
@@ -167,7 +117,6 @@ export default function PostAuthor({
             gap: "10px",
           }}
         >
-          <span style={iconStyle}>{savePost}</span>
           <span onClick={handleClick} style={iconStyle}>
             {moreIcon}
           </span>

@@ -22,11 +22,6 @@ const USER_PAGE_TAB_OPTIONS_AUTH = [
     title: "home",
   },
   {
-    id: 2,
-    url: "/user/userId/lists",
-    title: "lists",
-  },
-  {
     id: 3,
     url: "/user/userId/about",
     title: "about",
@@ -269,7 +264,6 @@ export default function User() {
                   />
                 );
               })}
-            {tab == "lists" && id && <SavedSection userId={id} />}
             {tab == "about" && (
               <AboutSection
                 userId={id!}
