@@ -44,18 +44,6 @@ export default function SuggestionBar({ activeTab }: { activeTab: string }) {
       }}
     >
       <>
-        {
-          <Link
-            to="/suggestions"
-            style={{
-              color: "gray",
-              height: "100%",
-              marginTop: "-6px",
-            }}
-          >
-            {plusIcon}
-          </Link>
-        }
         {options.map((option) => {
           return (
             <Link
@@ -78,7 +66,7 @@ export default function SuggestionBar({ activeTab }: { activeTab: string }) {
             </Link>
           );
         })}
-        {response?.data.interests.map((item: string) => {
+        {/* {response?.data.interests.map((item: string) => {
           return (
             <Link
               to={`/tag/${item}`}
@@ -98,7 +86,7 @@ export default function SuggestionBar({ activeTab }: { activeTab: string }) {
               {item}
             </Link>
           );
-        })}
+        })} */}
       </>
     </div>
   );

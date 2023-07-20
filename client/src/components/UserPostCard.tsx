@@ -123,18 +123,7 @@ export default function UserPostCard({
         >
           {iFollow ? "Unfollow" : "Follow"}
         </button>
-      ) : (
-        <p
-          style={{
-            color: "rgba(26, 137, 23, 1)",
-            marginLeft: "8px",
-            marginTop: !bio ? "5px" : "12px",
-            fontSize: "13.4px",
-          }}
-        >
-          Edit profile
-        </p>
-      )}
+      ) : null}
     </div>
   );
 }

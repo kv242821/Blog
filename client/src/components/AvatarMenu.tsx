@@ -143,35 +143,7 @@ function AuthMenu({
             </p>
           </MenuItem>
         </Link>
-        <Link
-          to={`/user/${userId}/lists`}
-          style={{
-            textDecoration: "none",
-            color: "inherit",
-          }}
-        >
-          <MenuItem
-            sx={[{ "&:hover": { backgroundColor: "transparent" } }]}
-            onClick={handleClose}
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              padding: "8px 18px",
-            }}
-          >
-            <span
-              style={{ color: "gray", margin: "0 10px", marginBottom: "-5px" }}
-            >
-              {librabryIcon}
-            </span>
-            <p
-              style={{ marginLeft: "5px", color: "#6b6a6a", fontSize: "14px" }}
-            >
-              Librabry
-            </p>
-          </MenuItem>
-        </Link>
+
         <Divider sx={{ margin: "10px 0" }} />
         <MenuItem
           sx={[{ "&:hover": { backgroundColor: "transparent" } }]}

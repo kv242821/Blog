@@ -271,41 +271,6 @@ export default function Post() {
                   </p>
                 </div>
               </div>
-              <div
-                className="right_tile"
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: "25px",
-                }}
-              >
-                <span
-                  onClick={() =>
-                    webShare({
-                      title: data?.data.post.title,
-                      text: "Check out this Medium blog",
-                      url: postUrl,
-                    })
-                  }
-                  style={iconColor}
-                >
-                  {shareicon}
-                </span>
-                <span style={iconColor}>{savePost}</span>
-                <span onClick={handleClick} style={iconColor}>
-                  {moreIcon}
-                </span>
-                <PostMenu
-                  anchorEl={anchorEl}
-                  deletePost={deletePost}
-                  open={open}
-                  handleClose={handleClose}
-                  editPost={editPost}
-                  ignoreAuthor={ignoreAuthor}
-                  userId={data?.data.user._id}
-                />
-              </div>
             </div>
           </div>
           {id && data?.data?.user._id && (
