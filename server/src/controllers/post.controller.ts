@@ -10,14 +10,10 @@ export const getUserPost = asyncHandler(async (req, res, next) => {
 export const getHomePost = asyncHandler(async (req, res, next) => {
   const { userId } = req;
   const user = await User.findOne({ _id: userId });
-  const ignoreList = user?.ignore ?? [];
-  const ignoreAuthor = user?.mutedAuthor ?? [];
   const posts = await getPostsWithUser(
     Post.find({
       $and: [
         { userId: { $ne: userId } },
-        { _id: { $nin: ignoreList } },
-        { userId: { $nin: ignoreAuthor } },
       ],
     })
   );
@@ -85,15 +81,10 @@ export const deletePost = asyncHandler(async (req, res, next) => {
 
 export const suggestTopPosts = asyncHandler(async (req, res, next) => {
   const { userId } = req;
-  const user = await User.findOne({ _id: userId });
-  const ignoreList = user?.ignore ?? [];
-  const ignoreAuthor = user?.mutedAuthor ?? [];
   const posts = await getPostsWithUser(
     Post.find({
       $and: [
         { userId: { $ne: userId } },
-        { _id: { $nin: ignoreList } },
-        { userId: { $nin: ignoreAuthor } },
       ],
     })
       .sort({ votes: -1 })
@@ -159,7 +150,7 @@ export const vote = asyncHandler(async (req, res, next) => {
             userId,
             username: user?.name,
             avatar: user?.avatar,
-            message: "clapped for",
+            message: "liked",
             postId,
             postTitle: post.title,
           },

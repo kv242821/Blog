@@ -38,7 +38,7 @@ export default function Post() {
     queryFn: () => httpRequest.get(`${url}/post/${id}`),
     queryKey: ["blog", id],
     onSuccess: (data) => {
-      document.title = data.data.post.title + " - Medium";
+      document.title = data.data.post.title + " - The Blog";
       setVotes(data.data.post.votes.length ?? 0);
       setTurnBlack(data.data.post.votes.includes(user?._id));
     },
@@ -305,7 +305,7 @@ export default function Post() {
           />
         )}
 
-        <TopPicks text="More from Medium" showImg={true} />
+        <TopPicks text="More from The Blog" showImg={true} />
       </div>
     </div>
   );
