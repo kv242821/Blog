@@ -59,7 +59,7 @@ export default function Write() {
 
   useEffect(() => {
     hideNavbar(true);
-    document.title = "New story -The Blog";
+    document.title = "Write post";
     return () => hideNavbar(false);
   }, []);
 

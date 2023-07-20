@@ -24,7 +24,7 @@ export default function Notification({
   postTitle,
 }: NotificationPropType) {
   useEffect(() => {
-    document.title = "Notifications - The Blog";
+    document.title = "Notifications ";
   }, []);
   return (
     <div
