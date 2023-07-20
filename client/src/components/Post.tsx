@@ -8,6 +8,7 @@ import { url } from "../baseUrl";
 import { httpRequest } from "../interceptor/axiosInterceptor";
 import Chip from "./Chip";
 import PostMenu from "./PostMenu";
+import Markdown from "./Markdown";
 
 type PostProps = {
   title: string;
@@ -209,11 +210,13 @@ export default function Post({
               textDecoration: "none",
             }}
           >
-            <p>
-              {unAuth
-                ? summary.slice(0, 130) + "..."
-                : summary.slice(0, 190) + "..."}
-            </p>
+            <div className="markdown">
+              <Markdown>
+                {unAuth
+                  ? summary.slice(0, 130) + "..."
+                  : summary.slice(0, 190) + "..."}
+              </Markdown>
+            </div>
           </Link>
 
           <div

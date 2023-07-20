@@ -213,10 +213,11 @@ export const comment = asyncHandler(async (req, res, next) => {
 export const deleteComment = asyncHandler(async (req, res, next) => {
   const { postId } = req.params;
   const { userId } = req;
-  const { comment, commentId } = req.body;
+  const { commentId } = req.body;
+  console.log("[deleteComment]", userId, commentId);
   const post = await Post.updateOne(
-    { _id: postId },
-    { $pull: { comments: { _id: commentId, userId, comment } } }
+    { _id: postId, userId: userId },
+    { $pull: { comments: { _id: commentId } } }
   );
   res.send({ success: post.modifiedCount == 1 });
 });

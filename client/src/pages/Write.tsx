@@ -182,24 +182,6 @@ export default function Write() {
             resize: "none",
           }}
         />
-        <TextareaAutosize
-          onChange={(e) => {
-            setLocalDraft((prev) => ({ ...prev, markdown: e.target.value }));
-            setPost((prev) => {
-              return { ...prev, markdown: e.target.value };
-            });
-          }}
-          value={post.markdown}
-          className="hide_scroll"
-          placeholder="Tell your story..."
-          style={{
-            width: "100%",
-            fontSize: "20px",
-            border: "none",
-            outline: "transparent",
-            resize: "none",
-          }}
-        />
 
         <CKEditor
           config={{
@@ -303,7 +285,7 @@ const DialogComponent = ({
             className="left_write_dialog"
             style={{ width: "47%", display: "flex", flexDirection: "column" }}
           >
-            <h4
+            {/* <h4
               style={{
                 marginTop: "0px",
                 marginBottom: "22px",
@@ -339,7 +321,7 @@ const DialogComponent = ({
                   inviting to readers.
                 </p>
               )}
-            </div>
+            </div> */}
             <h4
               style={{
                 marginTop: "15pxpx",
