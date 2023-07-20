@@ -231,6 +231,7 @@ export const getAllComments = asyncHandler(async (req, res, next) => {
   const comments = await Promise.all(
     post.comments.map(async (comment) => {
       return {
+        _id: comment._id,
         comment: comment.comment,
         user: await User.findOne(
           { _id: comment.userId },

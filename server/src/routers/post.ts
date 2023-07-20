@@ -47,7 +47,9 @@ router.route("/saved/:listName").get(isAuthenticated, getAllSavedFromList);
 
 router.route("/users/:topic").get(isAuthenticated, getPostOfTopic);
 
-router.route("/vote/:postId").patch(isAuthenticated, vote);
+router.route("/vote/:postId")
+  .patch(isAuthenticated, vote)
+  // .delete(isAuthenticated, vote);
 
 router.route("/comment/:postId")
   .put(isAuthenticated, comment)

@@ -18,6 +18,7 @@ const postSchema = new Schema(
     votes: [{ type: Schema.Types.ObjectId, ref: "users" }],
     comments: [
       {
+        _id: { type: Schema.Types.ObjectId, auto: true},
         userId: { type: Schema.Types.ObjectId, ref: "users" },
         comment: String,
       },
