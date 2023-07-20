@@ -69,7 +69,6 @@ export const CommentList = ({ postId, ownerId }: Props) => {
       queryKey: ["delete", comment._id],
       enabled: false,
       onSuccess() {
-        console.log("ádasd");
         getAllComments();
       },
     });
