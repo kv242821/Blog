@@ -21,7 +21,7 @@ const userSchema = new Schema(
         images: [{ type: String }],
       },
     ],
-    intrests: [{ type: String, required: true }],
+    interests: [{ type: String, required: true }],
     ignore: [{ type: Schema.Types.ObjectId, ref: "posts" }],
     mutedAuthor: [{ type: Schema.Types.ObjectId, ref: "users" }],
     notifications: [

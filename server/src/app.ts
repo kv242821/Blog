@@ -11,6 +11,9 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import User from "./models/user";
 import morgan from "morgan"
+import xss from "xss";
+import mongosanitize from "express-mongo-sanitize"
+import helmet from "helmet";
 
 const server = createServer(app);
 
@@ -18,9 +21,16 @@ if (env.DEV) {
   app.use(morgan('dev'));
 }
 
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "PATCH", "POST", "DELETE", "PUT"],
+  credentials: true, //
+  //   Access-Control-Allow-Credentials is a header that, when set to true , tells browsers to expose the response to the frontend JavaScript code. The credentials consist of cookies, authorization headers, and TLS client certificates.
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(helmet());
+app.use(mongosanitize());
 
 declare global {
   namespace Express {

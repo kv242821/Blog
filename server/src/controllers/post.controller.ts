@@ -7,7 +7,6 @@ export const getUserPost = asyncHandler(async (req, res, next) => {
   res.send(await Post.find({ userId: req.params.userId }).sort({ _id: -1 }));
 });
 
-// todo pagination
 export const getHomePost = asyncHandler(async (req, res, next) => {
   const { userId } = req;
   const user = await User.findOne({ _id: userId });
@@ -108,7 +107,7 @@ export const suggestTopics = asyncHandler(async (req, res, next) => {
   const ignoreTopics = [];
   if (userId != "undefined") {
     let user = await User.findOne({ _id: userId });
-    if (user) ignoreTopics.push(...user.intrests);
+    if (user) ignoreTopics.push(...user.interests);
   }
   const tags = await Tag.find({ name: { $nin: ignoreTopics } }, { name: 1 })
     .sort({ _id: -1 })
@@ -122,7 +121,6 @@ export const suggestTopics = asyncHandler(async (req, res, next) => {
   res.send(tags);
 });
 
-// pagination todo
 export const getPostOfTopic = asyncHandler(async (req, res, next) => {
   if (req.params.topic === "Following") {
     const user = await User.findOne({ _id: req.userId });
@@ -194,12 +192,12 @@ export const comment = asyncHandler(async (req, res, next) => {
 });
 
 export const deleteComment = asyncHandler(async (req, res, next) => {
-  const { postId } = req.params;
+  const { postId, commentId } = req.params;
   const { userId } = req;
   const { comment } = req.body;
   const post = await Post.updateOne(
     { _id: postId },
-    { $pull: { comments: { userId, comment } } }
+    { $pull: { comments: { _id: commentId, userId, comment } } }
   );
   res.send({ success: post.modifiedCount == 1 });
 });
@@ -211,7 +209,6 @@ export const morefrom = asyncHandler(async (req, res, next) => {
   );
 });
 
-// todo pagination
 export const explorePost = asyncHandler(async (req, res, next) => {
   res.send(await getPostsWithUser(Post.find({}).sort({ _id: -1 })));
 });
@@ -226,7 +223,6 @@ export const ignoreAuthor = asyncHandler(async (req, res, next) => {
   res.send({ success: updated.modifiedCount == 1 });
 });
 
-//todo pagination
 export const getAllComments = asyncHandler(async (req, res, next) => {
   const { postId } = req.params;
   if (!postId) throw new ServerError(400, "Post Id is not provided");
@@ -288,9 +284,6 @@ export const unSavePost = asyncHandler(async (req, res, next) => {
   res.send({ success: updated.modifiedCount == 1 });
 });
 
-// delete list -todo
-
-//todo pagination
 export const getAllSavedFromList = asyncHandler(async (req, res, next) => {
   const { listName } = req.params;
   if (!listName) throw new ServerError(400, "listName not provided");

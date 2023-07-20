@@ -98,29 +98,29 @@ export const getUser = asyncHandler(async (req, res, next) => {
   res.json(user);
 });
 
-export const getUserIntrests = asyncHandler(async (req, res, next) => {
-  const intrests = await User.findOne({ _id: req.userId }, { intrests: 1 });
-  res.send(intrests);
+export const getUserinterests = asyncHandler(async (req, res, next) => {
+  const interests = await User.findOne({ _id: req.userId }, { interests: 1 });
+  res.send(interests);
 });
 
-export const addUserIntrests = asyncHandler(async (req, res, next) => {
+export const addUserinterests = asyncHandler(async (req, res, next) => {
   const { topic } = req.query;
   const { userId } = req;
   const result = await User.updateOne(
     { _id: userId },
-    { $push: { intrests: topic } }
+    { $push: { interests: topic } }
   );
   res.send({
     success: result.modifiedCount == 1,
   });
 });
 
-export const removeUserIntrests = asyncHandler(async (req, res, next) => {
+export const removeUserinterests = asyncHandler(async (req, res, next) => {
   const { topic } = req.query;
   const { userId } = req;
   const result = await User.updateOne(
     { _id: userId },
-    { $pull: { intrests: topic } }
+    { $pull: { interests: topic } }
   );
   res.send({
     success: result.modifiedCount == 1,
