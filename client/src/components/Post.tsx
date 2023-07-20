@@ -209,9 +209,11 @@ export default function Post({
               textDecoration: "none",
             }}
           >
-            {unAuth
-              ? summary.slice(0, 130) + "..."
-              : summary.slice(0, 190) + "..."}
+            <p>
+              {unAuth
+                ? summary.slice(0, 130) + "..."
+                : summary.slice(0, 190) + "..."}
+            </p>
           </Link>
 
           <div
@@ -224,7 +226,7 @@ export default function Post({
               justifyContent: "space-between",
             }}
           >
-            {/* <div
+            <div
               className="left_actions"
               style={{
                 display: "flex",
@@ -234,8 +236,7 @@ export default function Post({
               }}
             >
               {tag && <Chip text={tag} />}
-              <p style={{ color: "gray", fontSize: "13.25px" }}>4 min read</p>
-            </div> */}
+            </div>
             <div
               className="right_actions"
               style={{
@@ -245,7 +246,7 @@ export default function Post({
                 gap: "14px",
               }}
             >
-              <span
+              {/* <span
                 style={{ color: "rgba(117, 117, 117, 1)", cursor: "pointer" }}
               >
                 {savePost}
@@ -265,7 +266,7 @@ export default function Post({
                 >
                   {moreIcon}
                 </span>
-              )}
+              )} */}
               <PostMenu
                 anchorEl={anchorEl}
                 open={open}

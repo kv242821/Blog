@@ -97,21 +97,23 @@ export const CommentList = ({ postId }: Props) => {
         </button>
       </Stack>
       <Stack direction={"column"} spacing={3} mt={5}>
-        {allComments.map((comment) => (
-          <Stack direction={"row"} alignContent={"start"} spacing={2}>
-            <Avatar src={comment.user.avatar} />
-            <Stack
-              direction={"column"}
-              width={"100%"}
-              bgcolor={"#F2F3F5"}
-              padding={2}
-              borderRadius={3}
-            >
-              <h5>{comment.user.name}</h5>
-              <text>{comment.comment}</text>
-            </Stack>
-          </Stack>
-        ))}
+        {allComments.length > 0
+          ? allComments.map((comment) => (
+              <Stack direction={"row"} alignContent={"start"} spacing={2}>
+                <Avatar src={comment?.user?.avatar} />
+                <Stack
+                  direction={"column"}
+                  width={"100%"}
+                  bgcolor={"#F2F3F5"}
+                  padding={2}
+                  borderRadius={3}
+                >
+                  <h5>{comment.user.name}</h5>
+                  <text>{comment.comment}</text>
+                </Stack>
+              </Stack>
+            ))
+          : null}
       </Stack>
     </Stack>
   );
