@@ -3,6 +3,7 @@ import {
   comment,
   deleteComment,
   deletePost,
+  deleteVote,
   editPost,
   explorePost,
   getAllComments,
@@ -11,13 +12,10 @@ import {
   getPost,
   getPostOfTopic,
   getUserPost,
-  ignoreAuthor,
-  ignorePost,
   morefrom,
   savePost,
   suggestTopics,
   suggestTopPosts,
-  unSavePost,
   vote,
   writePost,
 } from "../controllers/post.controller";
@@ -39,8 +37,6 @@ router
 
 router.route("/save/:postId").patch(isAuthenticated, savePost);
 
-router.route("/unsave/:postId").patch(isAuthenticated, unSavePost);
-
 router.route("/comments/:postId").get(isAuthenticated, getAllComments);
 
 router.route("/saved/:listName").get(isAuthenticated, getAllSavedFromList);
@@ -49,7 +45,7 @@ router.route("/users/:topic").get(isAuthenticated, getPostOfTopic);
 
 router.route("/vote/:postId")
   .patch(isAuthenticated, vote)
-  // .delete(isAuthenticated, vote);
+  .delete(isAuthenticated, deleteVote);
 
 router.route("/comment/:postId")
   .put(isAuthenticated, comment)
@@ -58,10 +54,6 @@ router.route("/comment/:postId")
 router.route("/topic/:topic").get(getPostOfTopic);
 
 router.route("/user/:userId").get(getUserPost);
-
-router.route("/ignoreAuthor/:userId").patch(isAuthenticated, ignoreAuthor);
-
-router.route("/ignore/:postId").patch(isAuthenticated, ignorePost);
 
 router.route("/suggest/topics").get(suggestTopics);
 

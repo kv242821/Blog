@@ -141,17 +141,36 @@ export const getPostOfTopic = asyncHandler(async (req, res, next) => {
   );
 });
 
-export const ignorePost = asyncHandler(async function (req, res, next) {
-  const { userId } = req;
+export const vote = asyncHandler(async (req, res, next) => {
   const { postId } = req.params;
-  const updated = await User.updateOne(
-    { _id: userId },
-    { $push: { ignore: postId } }
+  const { userId } = req;
+  const post = await Post.findOneAndUpdate(
+    { _id: postId },
+    { $push: { votes: userId } },
+    { returnDocument: "after" }
   );
-  res.send({ success: updated.modifiedCount == 1 });
+  if (post) {
+    const user = await User.findOne({ _id: userId });
+    await User.updateOne(
+      { _id: post.userId },
+      {
+        $push: {
+          notifications: {
+            userId,
+            username: user?.name,
+            avatar: user?.avatar,
+            message: "clapped for",
+            postId,
+            postTitle: post.title,
+          },
+        },
+      }
+    );
+  }
+  res.send({ success: post != undefined });
 });
 
-export const vote = asyncHandler(async (req, res, next) => {
+export const deleteVote = asyncHandler(async (req, res, next) => {
   const { postId } = req.params;
   const { userId } = req;
   const post = await Post.findOneAndUpdate(
@@ -213,15 +232,6 @@ export const explorePost = asyncHandler(async (req, res, next) => {
   res.send(await getPostsWithUser(Post.find({}).sort({ _id: -1 })));
 });
 
-export const ignoreAuthor = asyncHandler(async (req, res, next) => {
-  const { userId } = req;
-  const { userId: authorId } = req.params;
-  const updated = await User.updateOne(
-    { _id: userId },
-    { $push: { mutedAuthor: authorId } }
-  );
-  res.send({ success: updated.modifiedCount == 1 });
-});
 
 export const getAllComments = asyncHandler(async (req, res, next) => {
   const { postId } = req.params;
@@ -269,20 +279,6 @@ export const savePost = asyncHandler(async (req, res, next) => {
     );
     res.send({ success: updated.modifiedCount == 1 });
   }
-});
-
-export const unSavePost = asyncHandler(async (req, res, next) => {
-  const { userId } = req;
-  const { listName } = req.body;
-  const { postId } = req.params;
-  if (!listName) throw new ServerError(400, "listName not provided");
-  const post = await Post.findOne({ _id: postId });
-  if (!post) throw new ServerError(400, "Post does not exist");
-  const updated = await User.updateOne(
-    { _id: userId, "lists.name": listName },
-    { $pull: { "lists.$.posts": postId, "lists.$.images": post.image } }
-  );
-  res.send({ success: updated.modifiedCount == 1 });
 });
 
 export const getAllSavedFromList = asyncHandler(async (req, res, next) => {
