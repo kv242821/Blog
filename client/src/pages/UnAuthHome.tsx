@@ -7,7 +7,7 @@ export default function UnAuthHome() {
   const { hideNavbar } = useAppContext();
   useEffect(() => {
     hideNavbar(true);
-    document.title = "Medium – Where good ideas find you.";
+    document.title = "The Blog – Share, Engage, Inspire.";
     return () => hideNavbar(false);
   }, []);
   return (

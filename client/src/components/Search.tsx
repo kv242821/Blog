@@ -9,7 +9,7 @@ export default function Search() {
     if (e.key == "Enter" && query) {
       const q = query;
       setQuery("");
-      navigate(`search/stories/${q}`);
+      navigate(`search/posts/${q}`);
     }
   }
   return (
@@ -40,7 +40,7 @@ export default function Search() {
           backgroundColor: "transparent",
         }}
         type="text"
-        placeholder="Search "
+        placeholder="Search the Blog"
       />
     </div>
   );
