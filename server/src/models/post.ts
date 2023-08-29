@@ -1,4 +1,5 @@
-import { Schema, InferSchemaType, model } from "mongoose";
+import { Schema, InferSchemaType, model, isValidObjectId } from "mongoose";
+import ServerError from "../utils/ServerError";
 
 const postSchema = new Schema(
   {
@@ -29,6 +30,10 @@ const postSchema = new Schema(
   },
   { timestamps: true }
 );
+
+postSchema.pre("findOne", function() {
+  if(!isValidObjectId(this.getQuery()._id)) throw new ServerError(400, "No such post found!");
+})
 
 type userSchemaInferType = InferSchemaType<typeof postSchema>;
 export default model<userSchemaInferType>("posts", postSchema);

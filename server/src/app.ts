@@ -50,7 +50,7 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log(`Socket ID: ${socket.id} connected`);
+  console.log(`Socket ID "${socket.id}" connected`);
   socket.on("start", ({ userId }) => {
     ONLINE_USER_TO_SOCKET_ID_MAP.set(userId, socket.id);
   });
@@ -82,10 +82,6 @@ io.on("connection", (socket) => {
   socket.on("disconnect", (reason) => {
     console.log(reason, socket.id);
   });
-});
-
-app.get("/test", (req, res) => {
-  res.send("Hello from server side");
 });
 
 app.use("/post", postRouter);

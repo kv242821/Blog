@@ -23,14 +23,14 @@ export default function Home() {
 
 function HomeContainer({ tag }: { tag: string }) {
   const { isAuthenticated } = useAuth();
-  const [posts, setposts] = useState<Array<any>>([]);
+  const [posts, setPosts] = useState<Array<any>>([]);
   document.title = "The Blog";
   useQuery({
     queryFn: () => httpRequest.get(`${url}/post/home`),
     queryKey: ["home", "no"],
     enabled: tag == undefined,
     onSuccess: (data) => {
-      setposts(data.data);
+      setPosts(data.data);
     },
   });
   useQuery({
@@ -41,16 +41,16 @@ function HomeContainer({ tag }: { tag: string }) {
     queryKey: ["home", "topic", tag],
     enabled: tag != undefined,
     onSuccess: (data) => {
-      setposts(data.data);
+      setPosts(data.data);
     },
   });
 
   function filterPost(postId: string) {
-    setposts((prev) => prev.filter((item) => item.post._id !== postId));
+    setPosts((prev) => prev.filter((item) => item.post._id !== postId));
   }
 
   function filterAuthorPost(userId: string) {
-    setposts((prev) => prev.filter((item) => item.user._id !== userId));
+    setPosts((prev) => prev.filter((item) => item.user._id !== userId));
   }
   return (
     <div

@@ -8,8 +8,9 @@ const router = express.Router();
 
 router.route("/google/oauth").get(googleAuth);
 
+router.route("/token").post(tokenRefresh);
+
 router.route("/logout").post(logout);
 
-router.route("/token").post(tokenRefresh);
 
 export default router;

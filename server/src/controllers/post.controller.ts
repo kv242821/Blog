@@ -3,6 +3,7 @@ import Post from "../models/post";
 import Tag from "../models/tag";
 import User from "../models/user";
 import ServerError from "../utils/ServerError";
+
 export const getUserPost = asyncHandler(async (req, res, next) => {
   res.send(await Post.find({ userId: req.params.userId }).sort({ _id: -1 }));
 });
@@ -21,8 +22,10 @@ export const getHomePost = asyncHandler(async (req, res, next) => {
 });
 
 export const getPost = asyncHandler(async (req, res, next) => {
+  console.log("[getPost]");
   const post = await Post.findOne({ _id: req.params.postId });
-  if (!post) throw new ServerError(400, "No such post found!");
+
+  if (!post) throw new ServerError(404, "No such post found!");
   const user = await User.findOne({ _id: post.userId });
   res.send({ post, user });
 });
@@ -59,7 +62,7 @@ export const writePost = asyncHandler(async (req, res, next) => {
 export const editPost = asyncHandler(async (req, res, next) => {
   const { userId } = req;
   const post = await Post.findOne({ _id: req.params.postId });
-  if (!post) throw new ServerError(400, "No such post found");
+  if (!post) throw new ServerError(404, "No such post found");
   if (post.userId.toString() != userId)
     throw new ServerError(403, "Not Allowed");
   const updatedRef = await Post.updateOne(
@@ -72,7 +75,7 @@ export const editPost = asyncHandler(async (req, res, next) => {
 export const deletePost = asyncHandler(async (req, res, next) => {
   const { userId } = req;
   const post = await Post.findOne({ _id: req.params.postId });
-  if (!post) throw new ServerError(400, "No such post found");
+  if (!post) throw new ServerError(404, "No such post found");
   if (post.userId.toString() != userId)
     throw new ServerError(403, "Not Allowed");
   const deletedRef = await Post.deleteOne({ _id: req.params.postId });
@@ -227,9 +230,9 @@ export const explorePost = asyncHandler(async (req, res, next) => {
 
 export const getAllComments = asyncHandler(async (req, res, next) => {
   const { postId } = req.params;
-  if (!postId) throw new ServerError(400, "Post Id is not provided");
+  if (!postId) throw new ServerError(404, "Post Id is not provided");
   const post = await Post.findOne({ _id: postId });
-  if (!post) throw new ServerError(400, "Post does not exist");
+  if (!post) throw new ServerError(404, "Post does not exist");
   const comments = await Promise.all(
     post.comments.map(async (comment) => {
       return {
@@ -250,7 +253,7 @@ export const savePost = asyncHandler(async (req, res, next) => {
   const { listName = "Reading list" } = req.body;
   const { postId } = req.params;
   const post = await Post.findOne({ _id: postId });
-  if (!post) throw new ServerError(400, "Post does not exist");
+  if (!post) throw new ServerError(404, "Post does not exist");
   const find = await User.findOne({ _id: userId, "lists.name": listName });
   if (!find) {
     const updated = await User.updateOne(
@@ -275,11 +278,11 @@ export const savePost = asyncHandler(async (req, res, next) => {
 
 export const getAllSavedFromList = asyncHandler(async (req, res, next) => {
   const { listName } = req.params;
-  if (!listName) throw new ServerError(400, "listName not provided");
+  if (!listName) throw new ServerError(404, "listName not provided");
   const user = await User.findOne({ _id: req.userId });
-  if (!user) throw new ServerError(400, "User does not exist");
+  if (!user) throw new ServerError(404, "User does not exist");
   const savedList = user.lists.find((list) => list.name == listName);
-  if (!savedList) throw new ServerError(400, "List does not exist");
+  if (!savedList) throw new ServerError(404, "List does not exist");
   const posts = await Promise.all(
     savedList.posts.map(async (postId) => {
       const currPost = await Post.findOne({ _id: postId });

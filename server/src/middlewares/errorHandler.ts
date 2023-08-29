@@ -6,10 +6,11 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  if (err.message == "jwt expired")
-    return res.status(401).send({ message: "UnAuthorized, JWT Expired" });
   if (err instanceof ServerError)
-    res.status(err.statusCode).send({ message: err.message });
-  else
-    res.status(500).send({ message: err.message ?? "Internal Server Error" });
+    if(err.statusCode === 401)
+      return res.status(401).send({ message: "Unauthorized" });
+    else res.status(err.statusCode).send({ message: err.message });
+  else{
+    console.log(err);
+    res.status(500).send({ message: err.message ?? "Internal Server Error" });}
 };

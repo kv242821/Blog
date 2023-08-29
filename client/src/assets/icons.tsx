@@ -1,6 +1,4 @@
-export const theBlogLogo = (
-  <img src="../../public/the_blog.png" height="42px" />
-);
+export const theBlogLogo = <img src="../../the_blog.png" height="42px" />;
 
 export const NotificationIcon = (
   <svg
