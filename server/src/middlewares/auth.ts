@@ -11,8 +11,12 @@ export interface JWTPayload {
 const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   const AuthToken = req.headers["authorization"]?.split(" ")[1];
   if (!AuthToken) throw new ServerError(401, "Unauthorised");
-  const decoded = <JWTPayload>jwt.verify(AuthToken, env.JWT_SECRET);
-  req.userId = decoded._id;
+  try{
+    const decoded = <JWTPayload>jwt.verify(AuthToken, env.JWT_SECRET);
+    req.userId = decoded._id;
+  }catch(error) {
+    throw new ServerError(401, "Unauthorised");
+  }
   next();
 };
 

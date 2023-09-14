@@ -21,6 +21,10 @@ export const getHomePost = asyncHandler(async (req, res, next) => {
   res.send(posts);
 });
 
+export const explorePost = asyncHandler(async (req, res, next) => {
+  res.send(await getPostsWithUser(Post.find({}).sort({ _id: -1 })));
+});
+
 export const getPost = asyncHandler(async (req, res, next) => {
   console.log("[getPost]");
   const post = await Post.findOne({ _id: req.params.postId });
@@ -222,11 +226,6 @@ export const morefrom = asyncHandler(async (req, res, next) => {
     await Post.find({ $and: [{ userId }, { _id: { $ne: postId } }] }).limit(3)
   );
 });
-
-export const explorePost = asyncHandler(async (req, res, next) => {
-  res.send(await getPostsWithUser(Post.find({}).sort({ _id: -1 })));
-});
-
 
 export const getAllComments = asyncHandler(async (req, res, next) => {
   const { postId } = req.params;
